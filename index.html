@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI Product Design Lab is a premium single-page platform for AI-powered product design services, tutorials, courses, and design workflows. Learn to design smarter and build faster.">
+  <title>AI Product Design Lab | AI Product Design + Tutorials</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#060816;
+      --bg2:#0a1022;
+      --card:rgba(12,16,34,.62);
+      --line:rgba(255,255,255,.12);
+      --text:#f4f7ff;
+      --muted:rgba(226,232,255,.72);
+      --cyan:#69f0ff;
+      --violet:#9b7bff;
+      --pink:#ff6bd6;
+      --green:#4ef0ab;
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,sans-serif;background:
+      radial-gradient(circle at 20% 10%, rgba(155,123,255,.20), transparent 25%),
+      radial-gradient(circle at 80% 20%, rgba(105,240,255,.16), transparent 24%),
+      radial-gradient(circle at 50% 80%, rgba(255,107,214,.10), transparent 30%),
+      linear-gradient(180deg, #050714 0%, #070b18 35%, #050714 100%);
+      color:var(--text); overflow-x:hidden}
+    .font-display{font-family:Space Grotesk, Inter, sans-serif}
+    .font-alt{font-family:Poppins, Inter, sans-serif}
+    .glass{background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03)); backdrop-filter: blur(18px); border:1px solid var(--line); box-shadow:var(--shadow)}
+    .grid-fx:before{content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size:60px 60px; mask-image:linear-gradient(180deg, rgba(0,0,0,.7), transparent 95%); pointer-events:none}
+    .glow{box-shadow:0 0 0 1px rgba(105,240,255,.14), 0 0 40px rgba(155,123,255,.18)}
+    .grad-text{background:linear-gradient(90deg, #fff 0%, #b9c6ff 35%, var(--cyan) 70%, var(--pink) 100%); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .nav-blur{background:rgba(5,8,20,.72)!important; backdrop-filter: blur(18px); border-bottom:1px solid rgba(255,255,255,.08)}
+    .fade-up{opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease}
+    .fade-up.in{opacity:1; transform:translateY(0)}
+    .floaty{animation:floaty 8s ease-in-out infinite}
+    .floaty2{animation:floaty 10s ease-in-out infinite reverse}
+    @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+    .pulse-ring{animation:pulseRing 3s ease-in-out infinite}
+    @keyframes pulseRing{0%{transform:scale(.95);opacity:.55}50%{transform:scale(1.08);opacity:1}100%{transform:scale(.95);opacity:.55}}
+    .marquee{animation:marquee 22s linear infinite}
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .hero-slide{transition:opacity .8s ease, transform .8s ease}
+    .hero-slide:not(.active){opacity:0; transform:scale(1.03); pointer-events:none}
+    .hero-slide.active{opacity:1; transform:scale(1)}
+    .tab-active{background:linear-gradient(135deg, rgba(105,240,255,.16), rgba(155,123,255,.18)); border-color:rgba(105,240,255,.35); color:#fff}
+    .card-hover{transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease}
+    .card-hover:hover{transform:translateY(-8px); box-shadow:0 24px 80px rgba(0,0,0,.5); border-color:rgba(105,240,255,.22)}
+    .scrollbar-hide::-webkit-scrollbar{display:none}
+    .scrollbar-hide{-ms-overflow-style:none; scrollbar-width:none}
+    .counter{font-variant-numeric:tabular-nums}
+    .input-glow:focus{outline:none; border-color:rgba(105,240,255,.45); box-shadow:0 0 0 4px rgba(105,240,255,.08)}
+  </style>
+</head>
+<body class="selection:bg-cyan-300/30 selection:text-white">
+  <div class="fixed inset-0 pointer-events-none overflow-hidden">
+    <div class="absolute-top-24 left-1/2 w-[42rem] h-[42rem] rounded-full bg-violet-500/18 blur-3xl pulse-ring"></div>
+    <div class="absolute top-1/3-left-24 w-[28rem] h-[28rem] rounded-full bg-cyan-400/10 blur-3xl floaty"></div>
+    <div class="absolute bottom-0 right-0 w-[34rem] h-[34rem] rounded-full bg-pink-500/10 blur-3xl floaty2"></div>
+  </div>
+
+  <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mt-3 rounded-full px-4 py-3 flex items-center justify-between glass">
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 grid place-items-center glow">
+            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+          </div>
+          <div>
+            <div class="font-display font-bold tracking-tight text-white text-sm sm:text-base">AI Product Design Lab</div>
+            <div class="text-[11px] text-white/55-mt-0.5">AI design education + services</div>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-7 text-sm text-white/78">
+          <a href="#home" class="hover:text-white transition">Home</a>
+          <a href="#about" class="hover:text-white transition">About Us</a>
+          <a href="#tutorials" class="hover:text-white transition">Tutorials</a>
+          <a href="#services" class="hover:text-white transition">Services</a>
+          <a href="#contact" class="hover:text-white transition">Contact</a>
+        </nav>
+
+        <div class="hidden lg:flex items-center gap-3">
+          <a href="#tutorials" class="text-sm px-4 py-2 rounded-full border border-white/12 text-white/80 hover:text-white hover:border-white/24 transition">Browse Tutorials</a>
+          <a href="#contact" class="text-sm px-5 py-2.5 rounded-full bg-white text-slate-950 font-semibold hover:scale-[1.02] transition">Start Learning</a>
+        </div>
+
+        <button id="menuBtn" class="lg:hidden h-11 w-11 rounded-full glass grid place-items-center" aria-label="Open menu">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="lg:hidden hidden mx-4 mt-3 rounded-3xl glass overflow-hidden">
+      <div class="p-4 grid gap-2 text-white/84">
+        <a href="#home" class="px-4 py-3 rounded-2xl hover:bg-white/6">Home</a>
+        <a href="#about" class="px-4 py-3 rounded-2xl hover:bg-white/6">About Us</a>
+        <a href="#tutorials" class="px-4 py-3 rounded-2xl hover:bg-white/6">Tutorials</a>
+        <a href="#services" class="px-4 py-3 rounded-2xl hover:bg-white/6">Services</a>
+        <a href="#contact" class="px-4 py-3 rounded-2xl hover:bg-white/6">Contact</a>
+        <a href="#contact" class="mt-2 text-center px-4 py-3 rounded-2xl bg-white text-slate-950 font-semibold">Start Learning</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="relative min-h-screen pt-28 lg:pt-32 overflow-hidden">
+      <div class="absolute inset-0 grid-fx"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,.05),transparent_55%)]"></div>
+
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10 min-h-[calc(100vh-7rem)] flex items-center">
+        <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-12 w-full items-center">
+          <div class="fade-up">
+            <div class="inline-flex items-center gap-2 rounded-full px-4 py-2 glass text-xs sm:text-sm text-white/82 mb-6">
+              <span class="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_20px_rgba(105,240,255,.8)]"></span>
+              Premium AI design education and product consulting
+            </div>
+
+            <div class="relative h-[390px] sm:h-[420px] lg:h-[520px]">
+              <article class="hero-slide active absolute inset-0 flex flex-col justify-center gap-8">
+                <div>
+                  <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[.95]">
+                    <span class="grad-text">Learn Product Design</span><br>with AI
+                  </h1>
+                  <p class="mt-6 max-w-xl text-base sm:text-lg text-white/72 leading-8">Master UI/UX, wireframing, prototyping, and AI-assisted design workflows.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-4">
+                  <a href="#tutorials" class="px-6 py-3.5 rounded-full bg-white text-slate-950 font-semibold hover:scale-[1.02] transition">Explore Tutorials</a>
+                  <a href="#services" class="px-6 py-3.5 rounded-full border border-white/15 text-white/90 hover:border-cyan-300/50 hover:bg-white/6 transition">See Services</a>
+                </div>
+              </article>
+
+              <article class="hero-slide absolute inset-0 flex flex-col justify-center gap-8">
+                <div>
+                  <h2 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[.95]">
+                    <span class="grad-text">Future of Design</span><br>Starts Here
+                  </h2>
+                  <p class="mt-6 max-w-xl text-base sm:text-lg text-white/72 leading-8">Discover AI tools that accelerate creativity and product innovation.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-4">
+                  <a href="#tutorials" class="px-6 py-3.5 rounded-full bg-white text-slate-950 font-semibold hover:scale-[1.02] transition">View Courses</a>
+                  <a href="#contact" class="px-6 py-3.5 rounded-full border border-white/15 text-white/90 hover:border-cyan-300/50 hover:bg-white/6 transition">Book a Call</a>
+                </div>
+              </article>
+
+              <article class="hero-slide absolute inset-0 flex flex-col justify-center gap-8">
+                <div>
+                  <h2 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[.95]">
+                    <span class="grad-text">Design Smarter.</span><br>Build Faster.
+                  </h2>
+                  <p class="mt-6 max-w-xl text-base sm:text-lg text-white/72 leading-8">From beginner to advanced product designer with AI-powered learning.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-4">
+                  <a href="#contact" class="px-6 py-3.5 rounded-full bg-white text-slate-950 font-semibold hover:scale-[1.02] transition">Get Started</a>
+                  <a href="#about" class="px-6 py-3.5 rounded-full border border-white/15 text-white/90 hover:border-cyan-300/50 hover:bg-white/6 transition">Meet the Lab</a>
+                </div>
+              </article>
+            </div>
+
+            <div class="flex items-center gap-4 mt-6">
+              <div class="flex items-center gap-2" id="heroDots"></div>
+              <div class="hidden sm:block h-px w-20 bg-white/12"></div>
+              <div class="flex items-center gap-2">
+                <button id="prevHero" class="h-10 w-10 rounded-full glass hover:bg-white/8 transition grid place-items-center" aria-label="Previous slide"><i data-lucide="arrow-left" class="w-4 h-4"></i></button>
+                <button id="nextHero" class="h-10 w-10 rounded-full glass hover:bg-white/8 transition grid place-items-center" aria-label="Next slide"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+              </div>
+            </div>
+
+            <div class="mt-10 flex items-center gap-3 text-white/55 text-sm">
+              <span class="h-9 w-5 rounded-full border border-white/18 grid place-items-start p-1">
+                <span class="h-2 w-2 rounded-full bg-cyan-300 animate-bounce"></span>
+              </span>
+              <span>Scroll to explore the design system, tutorials, services, and contact experience.</span>
+            </div>
+          </div>
+
+          <div class="relative fade-up">
+            <div class="absolute-inset-6 bg-gradient-to-br from-violet-500/20 via-transparent to-cyan-400/20 blur-2xl"></div>
+            <div class="relative glass rounded-[2rem] p-4 sm:p-5 overflow-hidden">
+              <img data-ai="generate" data-slot="hero-visual" data-prompt="A futuristic AI product design workspace with floating holographic UI panels, layered wireframes, gradient lighting, elegant minimal desk objects, premium dark atmosphere, no text" data-ar="4:3" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/hero-visual-68201c37d6e149d08314d9cfdaa96bd2.png" alt="Futuristic AI design workflow" class="w-full h-[500px] object-cover rounded-[1.5rem]">
+              <div class="absolute top-8 left-8 glass rounded-2xl px-4 py-3 text-sm text-white/84 max-w-[220px] floaty">
+                <div class="flex items-center gap-2 text-cyan-300 mb-1"><i data-lucide="wand-sparkles" class="w-4 h-4"></i> AI workflow</div>
+                Smart prompts, fast iterations, better products.
+              </div>
+              <div class="absolute bottom-8 right-8 glass rounded-2xl px-4 py-3 text-sm text-white/84 max-w-[210px] floaty2">
+                <div class="flex items-center gap-2 text-violet-300 mb-1"><i data-lucide="cpu" class="w-4 h-4"></i> Learning engine</div>
+                Tutorials, systems, and practical product strategies.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute bottom-6 left-1/2-translate-x-1/2 z-10">
+        <div class="h-14 w-8 rounded-full border border-white/16 grid place-items-start p-1.5 glass">
+          <div class="h-3 w-3 rounded-full bg-white/80 animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-6 overflow-hidden border-y border-white/8">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex whitespace-nowrap gap-10 text-white/50 text-sm marquee">
+          <span>AI UI Design</span><span>Figma Tutorials</span><span>Product Strategy</span><span>UX Research</span><span>AI Wireframing</span><span>Design Systems</span><span>Prompt Engineering</span><span>AI Animation</span>
+          <span>AI UI Design</span><span>Figma Tutorials</span><span>Product Strategy</span><span>UX Research</span><span>AI Wireframing</span><span>Design Systems</span><span>Prompt Engineering</span><span>AI Animation</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-24 lg:py-32">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-[.95fr_1.05fr] gap-10 items-center">
+          <div class="fade-up">
+            <div class="relative rounded-[2rem] overflow-hidden glass">
+              <img data-ai="generate" data-slot="about-image" data-prompt="An abstract AI design workflow illustration with layered interface screens, neural network lines, wireframe sketches, glowing cyan and violet gradients, premium editorial composition, no text" data-ar="4:3" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/about-image-b2cb9826e9a44b5897767a6cb1ba9be8.png" alt="AI workflow illustration" class="w-full h-[520px] object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#060816] via-transparent to-transparent"></div>
+            </div>
+          </div>
+
+          <div class="fade-up">
+            <p class="text-cyan-300 uppercase tracking-[.35em] text-xs mb-4">About Us</p>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">A design lab built for the AI era.</h2>
+            <div class="mt-6 grid gap-5 text-white/72 leading-8">
+              <p><strong class="text-white">Who we are:</strong> a premium learning and design studio helping product teams, founders, and designers create polished experiences with AI-enhanced workflows.</p>
+              <p><strong class="text-white">Mission:</strong> make advanced design knowledge practical, fast, and accessible through tutorials, consulting, and structured systems.</p>
+              <p><strong class="text-white">Vision:</strong> shape the next generation of product designers who can think strategically, prototype fluently, and build with AI as a creative partner.</p>
+              <p><strong class="text-white">Our philosophy:</strong> great products emerge when taste, systems thinking, and intelligent tooling work together. We teach modern product design as a repeatable process, not just a visual skill.</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
+              <div class="glass rounded-3xl p-5">
+                <div class="text-3xl font-display font-bold counter" data-counter="10000">0</div>
+                <div class="text-white/60 text-sm mt-1">Students</div>
+              </div>
+              <div class="glass rounded-3xl p-5">
+                <div class="text-3xl font-display font-bold counter" data-counter="500">0</div>
+                <div class="text-white/60 text-sm mt-1">Tutorials</div>
+              </div>
+              <div class="glass rounded-3xl p-5">
+                <div class="text-3xl font-display font-bold counter" data-counter="120">0</div>
+                <div class="text-white/60 text-sm mt-1">Resources</div>
+              </div>
+              <div class="glass rounded-3xl p-5">
+                <div class="text-3xl font-display font-bold counter" data-counter="95">0</div>
+                <div class="text-white/60 text-sm mt-1">Satisfaction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tutorials" class="py-24 lg:py-32">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8">
+          <div class="fade-up max-w-2xl">
+            <p class="text-cyan-300 uppercase tracking-[.35em] text-xs mb-4">Tutorials</p>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Curated lessons for modern product designers.</h2>
+            <p class="mt-4 text-white/68 leading-8">Filter through practical, AI-first tutorials designed to help you build systems, sharpen taste, and move from idea to interface with confidence.</p>
+          </div>
+
+          <div class="fade-up flex flex-wrap gap-2" id="tutorialTabs">
+            <button class="tab-active px-4 py-2 rounded-full border border-white/12 text-sm" data-filter="all">All</button>
+            <button class="px-4 py-2 rounded-full border border-white/12 text-sm text-white/78" data-filter="ai ui design">AI UI Design</button>
+            <button class="px-4 py-2 rounded-full border border-white/12 text-sm text-white/78" data-filter="figma tutorials">Figma Tutorials</button>
+            <button class="px-4 py-2 rounded-full border border-white/12 text-sm text-white/78" data-filter="design systems">Design Systems</button>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-5" id="tutorialGrid">
+          <article class="tutorial-card glass rounded-[1.75rem] overflow-hidden card-hover fade-up" data-tags="ai ui design prompt engineering">
+            <img data-ai="generate" data-slot="t1" data-prompt="Modern tutorial thumbnail for AI UI design with glowing interface panels, wireframes, cursor trails, neon accents, premium dark style, no text" data-ar="16:9" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/t1-0a7cd316e2a54871a3c7aaa17b8bf353.png" alt="AI UI Design tutorial" class="w-full h-44 object-cover">
+            <div class="p-5">
+              <p class="text-xs uppercase tracking-[.3em] text-cyan-300">AI UI Design</p>
+              <h3 class="mt-2 font-display text-xl font-semibold">Designing Interfaces with AI</h3>
+              <p class="mt-3 text-sm text-white/65 leading-6">Learn how to turn rough ideas into polished product screens using AI-assisted layout, copy, and iteration.</p>
+              <a href="#contact" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-cyan-300 transition">Watch Tutorial <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+          </article>
+          <article class="tutorial-card glass rounded-[1.75rem] overflow-hidden card-hover fade-up" data-tags="figma tutorials">
+            <img data-ai="generate" data-slot="t2" data-prompt="Premium Figma tutorial thumbnail showing a collaborative design canvas, components, grids, and a futuristic workspace, dark neon theme, no text" data-ar="16:9" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/t2-401fd4453f7c441bb5aaf00897a0e959.png" alt="Figma tutorial" class="w-full h-44 object-cover">
+            <div class="p-5">
+              <p class="text-xs uppercase tracking-[.3em] text-violet-300">Figma Tutorials</p>
+              <h3 class="mt-2 font-display text-xl font-semibold">Figma for Product Designers</h3>
+              <p class="mt-3 text-sm text-white/65 leading-6">Build a scalable workflow for frames, components, and design handoff that saves hours every week.</p>
+              <a href="#contact" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-cyan-300 transition">Watch Tutorial <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+          </article>
+          <article class="tutorial-card glass rounded-[1.75rem] overflow-hidden card-hover fade-up" data-tags="product strategy ux research">
+            <img data-ai="generate" data-slot="t3" data-prompt="Editorial product strategy tutorial thumbnail with roadmap cards, metrics, workshop notes, and futuristic dashboard panels, premium dark visual, no text" data-ar="16:9" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/t3-f4ff6e202a64475598a5031e884274fd.png" alt="Product strategy tutorial" class="w-full h-44 object-cover">
+            <div class="p-5">
+              <p class="text-xs uppercase tracking-[.3em] text-pink-300">Product Strategy</p>
+              <h3 class="mt-2 font-display text-xl font-semibold">Designing with Business Goals</h3>
+              <p class="mt-3 text-sm text-white/65 leading-6">Bridge the gap between product vision, user value, and business outcomes with structured strategy tools.</p>
+              <a href="#contact" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-cyan-300 transition">Watch Tutorial <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+          </article>
+          <article class="tutorial-card glass rounded-[1.75rem] overflow-hidden card-hover fade-up" data-tags="ai wireframing design systems">
+            <img data-ai="generate" data-slot="t4" data-prompt="AI wireframing tutorial thumbnail with low fidelity wireframes evolving into polished interfaces, glowing lines, dark futuristic studio, no text" data-ar="16:9" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/t4-8f19cfb301af43df92a9e8e9a298c7c8.png" alt="AI wireframing tutorial" class="w-full h-44 object-cover">
+            <div class="p-5">
+              <p class="text-xs uppercase tracking-[.3em] text-cyan-300">AI Wireframing</p>
+              <h3 class="mt-2 font-display text-xl font-semibold">From Prompt to Wireframe</h3>
+              <p class="mt-3 text-sm text-white/65 leading-6">Use AI to quickly generate wireframes, flows, and variations before refining the best direction.</p>
+              <a href="#contact" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-cyan-300 transition">Watch Tutorial <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="py-24 lg:py-32">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="fade-up max-w-2xl mb-10">
+          <p class="text-cyan-300 uppercase tracking-[.35em] text-xs mb-4">Services</p>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Premium design services for modern teams.</h2>
+          <p class="mt-4 text-white/68 leading-8">A full-stack creative partner for product design, AI workflows, and scalable design systems.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+          <div class="fade-up glass rounded-[1.75rem] p-6 card-hover border border-white/10 bg-[linear-gradient(180deg,rgba(155,123,255,.14),rgba(255,255,255,.03))]">
+            <i data-lucide="layout-dashboard" class="w-7 h-7 text-cyan-300"></i><h3 class="mt-5 font-display text-xl font-semibold">Product UI/UX Design</h3><p class="mt-3 text-white/65 leading-7">Modern interface design that balances clarity, motion, and conversion-minded product thinking.</p><a href="#contact" class="mt-6 inline-flex items-center gap-2 font-semibold text-sm">Start Project <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+          </div>
+          <div class="fade-up glass rounded-[1.75rem] p-6 card-hover border border-white/10 bg-[linear-gradient(180deg,rgba(105,240,255,.12),rgba(255,255,255,.03))]">
+            <i data-lucide="brain-circuit" class="w-7 h-7 text-violet-300"></i><h3 class="mt-5 font-display text-xl font-semibold">AI Design Consultation</h3><p class="mt-3 text-white/65 leading-7">Adopt AI tools, prompts, and workflows tailored to your team’s design process and goals.</p><a href="#contact" class="mt-6 inline-flex items-center gap-2 font-semibold text-sm">Book Consultation <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+          </div>
+          <div class="fade-up glass rounded-[1.75rem] p-6 card-hover border border-white/10 bg-[linear-gradient(180deg,rgba(255,107,214,.12),rgba(255,255,255,.03))]">
+            <i data-lucide="monitor-smartphone" class="w-7 h-7 text-pink-300"></i><h3 class="mt-5 font-display text-xl font-semibold">SaaS Dashboard Design</h3><p class="mt-3 text-white/65 leading-7">Premium dashboards with clean hierarchy, data storytelling, and rich interaction patterns.</p><a href="#contact" class="mt-6 inline-flex items-center gap-2 font-semibold text-sm">Explore Options <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+          </div>
+          <div class="fade-up glass rounded-[1.75rem] p-6 card-hover border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03))]">
+            <i data-lucide="smartphone" class="w-7 h-7 text-green-300"></i><h3 class="mt-5 font-display text-xl font-semibold">Mobile App Design</h3><p class="mt-3 text-white/65 leading-7">Elegant mobile experiences with intuitive flows, motion, and delightful micro-interactions.</p><a href="#contact" class="mt-6 inline-flex items-center gap-2 font-semibold text-sm">Launch App <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+          </div>
+          <div class="fade-up glass rounded-[1.75rem] p-6 card-hover border border-white/10 bg-[linear-gradient(180deg,rgba(105,240,255,.10),rgba(255,255,255,.03))]">
+            <i data-lucide="badge-pct" class="w-7 h-7 text-cyan-300"></i><h3 class="mt-5 font-display text-xl font-semibold">Branding & Identity</h3><p class="mt-3 text-white/65 leading-7">Visual systems, brand language, and art direction designed for premium digital products.</p><a href="#contact" class="mt-6 inline-flex items-center gap-2 font-semibold text-sm">Shape Brand <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+          </div>
+          <div class="fade-up glass rounded-[1.75rem] p-6 card-hover border border-white/10 bg-[linear-gradient(180deg,rgba(155,123,255,.10),rgba(255,255,255,.03))]">
+            <i data-lucide="workflow" class="w-7 h-7 text-violet-300"></i><h3 class="mt-5 font-display text-xl font-semibold">AI Workflow Automation</h3><p class="mt-3 text-white/65 leading-7">Automate repetitive design tasks with smart systems, templates, and prompt pipelines.</p><a href="#contact" class="mt-6 inline-flex items-center gap-2 font-semibold text-sm">Automate Now <i data-lucide="arrow-up-right" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="py-24 lg:py-32">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="fade-up flex items-end justify-between gap-4 mb-8">
+          <div>
+            <p class="text-cyan-300 uppercase tracking-[.35em] text-xs mb-4">Testimonials</p>
+            <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">Trusted by designers, founders, and product teams.</h2>
+          </div>
+          <div class="hidden sm:flex gap-2">
+            <button id="prevTestimonial" class="h-11 w-11 rounded-full glass grid place-items-center"><i data-lucide="arrow-left" class="w-4 h-4"></i></button>
+            <button id="nextTestimonial" class="h-11 w-11 rounded-full glass grid place-items-center"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+          </div>
+        </div>
+
+        <div class="relative overflow-hidden">
+          <div id="testimonialTrack" class="flex gap-5 transition-transform duration-500">
+            <article class="min-w-full md:min-w-[calc(50%-10px)] xl:min-w-[calc(33.333%-14px)] glass rounded-[1.75rem] p-6">
+              <div class="flex items-center gap-4 mb-5"><img data-ai="generate" data-slot="av1" data-prompt="Professional portrait avatar of a creative product designer in a futuristic studio, soft dark background, no text" data-ar="1:1" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/av1-83da3cfa863e48b1b9b301013e0fa758.png" class="h-14 w-14 rounded-2xl object-cover" alt="Avatar"><div><div class="font-semibold">Maya Chen</div><div class="text-white/55 text-sm">Lead Product Designer</div></div></div>
+              <div class="flex gap-1 text-amber-300 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+              <p class="text-white/74 leading-8">The AI workflow tutorials cut our design cycle time in half. Everything feels practical, premium, and incredibly current.</p>
+            </article>
+            <article class="min-w-full md:min-w-[calc(50%-10px)] xl:min-w-[calc(33.333%-14px)] glass rounded-[1.75rem] p-6">
+              <div class="flex items-center gap-4 mb-5"><img data-ai="generate" data-slot="av2" data-prompt="Professional avatar portrait of a startup founder with modern glasses and calm expression, dark cinematic lighting, no text" data-ar="1:1" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/av2-0f431f03f1d344f0bb3221ddd4e446bb.png" class="h-14 w-14 rounded-2xl object-cover" alt="Avatar"><div><div class="font-semibold">Jordan Lee</div><div class="text-white/55 text-sm">Founder, SaaS Studio</div></div></div>
+              <div class="flex gap-1 text-amber-300 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+              <p class="text-white/74 leading-8">The product strategy guidance and dashboard design support gave our app a much stronger premium feel.</p>
+            </article>
+            <article class="min-w-full md:min-w-[calc(50%-10px)] xl:min-w-[calc(33.333%-14px)] glass rounded-[1.75rem] p-6">
+              <div class="flex items-center gap-4 mb-5"><img data-ai="generate" data-slot="av3" data-prompt="Professional avatar portrait of a UX researcher in an elegant dark workspace, subtle neon reflections, no text" data-ar="1:1" src="https://cdn.landing-page.io/ai-landingpage/html-generate/0b93f295-00fb-47e1-a2aa-202aac391982/images/av3-c5411bd8a01748489147b2d99cefede6.png" class="h-14 w-14 rounded-2xl object-cover" alt="Avatar"><div><div class="font-semibold">Sofia Patel</div><div class="text-white/55 text-sm">UX Researcher</div></div></div>
+              <div class="flex gap-1 text-amber-300 mb-4"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+              <p class="text-white/74 leading-8">Beautifully structured and thoughtfully designed. The lessons make AI feel like a true creative collaborator.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-24 lg:py-32">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-6 items-stretch">
+          <div class="fade-up rounded-[2rem] p-7 sm:p-8 glass">
+            <p class="text-cyan-300 uppercase tracking-[.35em] text-xs mb-4">Contact</p>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight">Let’s build your next product experience.</h2>
+            <p class="mt-4 text-white/68 leading-8">Whether you need a design partner, AI workflow help, or a private training plan, we’d love to hear from you.</p>
+
+            <div class="mt-8 grid gap-4 text-sm">
+              <div class="flex items-start gap-4"><div class="h-11 w-11 rounded-2xl bg-white/6 grid place-items-center"><i data-lucide="mail" class="w-5 h-5 text-cyan-300"></i></div><div><div class="text-white/55">Email</div><div class="text-white">hello@aiproductdesignlab.com</div></div></div>
+              <div class="flex items-start gap-4"><div class="h-11 w-11 rounded-2xl bg-white/6 grid place-items-center"><i data-lucide="phone" class="w-5 h-5 text-violet-300"></i></div><div><div class="text-white/55">Phone</div><div class="text-white">+1 (555) 014-2024</div></div></div>
+              <div class="flex items-start gap-4"><div class="h-11 w-11 rounded-2xl bg-white/6 grid place-items-center"><i data-lucide="map-pin" class="w-5 h-5 text-pink-300"></i></div><div><div class="text-white/55">Address</div><div class="text-white">12 Future Avenue, Design District, NY</div></div></div>
+            </div>
+
+            <div class="flex gap-3 mt-8">
+              <a href="#" class="h-11 w-11 rounded-full glass grid place-items-center hover:text-cyan-300"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+              <a href="#" class="h-11 w-11 rounded-full glass grid place-items-center hover:text-cyan-300"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+              <a href="#" class="h-11 w-11 rounded-full glass grid place-items-center hover:text-cyan-300"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+              <a href="#" class="h-11 w-11 rounded-full glass grid place-items-center hover:text-cyan-300"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+            </div>
+          </div>
+
+          <div class="fade-up rounded-[2rem] p-7 sm:p-8 glass">
+            <form id="contactForm" class="grid gap-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div><label class="block text-sm mb-2 text-white/70">Name</label><input required class="input-glow w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/30" placeholder="Your name"></div>
+                <div><label class="block text-sm mb-2 text-white/70">Email</label><input type="email" required class="input-glow w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/30" placeholder="you@email.com"></div>
+              </div>
+              <div><label class="block text-sm mb-2 text-white/70">Subject</label><input required class="input-glow w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/30" placeholder="How can we help?"></div>
+              <div><label class="block text-sm mb-2 text-white/70">Message</label><textarea required rows="6" class="input-glow w-full rounded-2xl bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/30 resize-none" placeholder="Tell us about your project or learning goals."></textarea></div>
+              <button class="mt-2 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white text-slate-950 font-semibold hover:scale-[1.01] transition"><i data-lucide="send" class="w-4 h-4"></i> Submit</button>
+              <p id="formNote" class="text-sm text-white/55 min-h-5"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="relative mt-10 border-t border-white/8 bg-[linear-gradient(180deg,rgba(155,123,255,.08),rgba(105,240,255,.04),rgba(255,255,255,.02))]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid lg:grid-cols-[1fr_auto_auto] gap-8 items-start">
+        <div>
+          <a href="#home" class="inline-flex items-center gap-3">
+            <div class="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 grid place-items-center"><i data-lucide="sparkles" class="w-5 h-5 text-white"></i></div>
+            <div class="font-display font-bold text-lg">AI Product Design Lab</div>
+          </a>
+          <p class="mt-4 max-w-md text-white/64 leading-7">A premium platform for AI-powered product design services, tutorials, and modern creative workflows.</p>
+        </div>
+
+        <div>
+          <div class="font-semibold mb-4">Quick Links</div>
+          <div class="grid gap-3 text-white/66">
+            <a href="#about">About Us</a><a href="#tutorials">Tutorials</a><a href="#services">Services</a><a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="min-w-[280px]">
+          <div class="font-semibold mb-4">Newsletter</div>
+          <form class="flex gap-2">
+            <input type="email" class="input-glow flex-1 rounded-full bg-white/5 border border-white/10 px-4 py-3 text-white placeholder:text-white/30" placeholder="Email address">
+            <button class="px-5 py-3 rounded-full bg-white text-slate-950 font-semibold">Join</button>
+          </form>
+          <div class="flex gap-3 mt-5 text-white/70">
+            <a href="#" class="hover:text-white"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="#" class="hover:text-white"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+            <a href="#" class="hover:text-white"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            <a href="#" class="hover:text-white"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 pt-6 border-t border-white/8 flex flex-col sm:flex-row gap-3 justify-between text-sm text-white/52">
+        <p>© 2026 AI Product Design Lab. All rights reserved.</p>
+        <p>Designed for modern AI learning and premium product design.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const header = document.getElementById('siteHeader');
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn?.addEventListener('click', ()=> mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click', ()=> mobileMenu.classList.add('hidden')));
+
+    const onScroll = ()=> header.classList.toggle('nav-blur', window.scrollY > 10);
+    window.addEventListener('scroll', onScroll); onScroll();
+
+    const slides = [...document.querySelectorAll('.hero-slide')];
+    const dotsWrap = document.getElementById('heroDots');
+    let heroIndex = 0, heroTimer;
+    const renderDots = () => {
+      dotsWrap.innerHTML = slides.map((_,i)=>`<button aria-label="Go to slide ${i+1}" class="h-2.5 rounded-full transition-all ${i===heroIndex?'w-8 bg-white':'w-2.5 bg-white/35'}"></button>`).join('');
+      [...dotsWrap.children].forEach((btn,i)=>btn.addEventListener('click', ()=>showHero(i,true)));
+    };
+    const showHero = (i,manual=false) => {
+      heroIndex = (i + slides.length) % slides.length;
+      slides.forEach((s,idx)=>s.classList.toggle('active', idx===heroIndex));
+      renderDots();
+      if(manual) restartHero();
+    };
+    const restartHero = ()=>{ clearInterval(heroTimer); heroTimer = setInterval(()=>showHero(heroIndex+1), 5500); };
+    document.getElementById('prevHero').onclick = ()=> showHero(heroIndex-1, true);
+    document.getElementById('nextHero').onclick = ()=> showHero(heroIndex+1, true);
+    showHero(0); restartHero();
+
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add('in');
+      });
+    }, {threshold:.15});
+    document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+    document.querySelectorAll('.counter').forEach(el=>{
+      const target = parseInt(el.dataset.counter,10); let started=false;
+      const run=()=>{ if(started) return; started=true; let cur=0; const step=Math.ceil(target/80); const t=setInterval(()=>{cur += step; if(cur >= target){cur=target; clearInterval(t);} el.textContent = target>=1000 ? (target===10000?'10K+':(target/1000).toFixed(0)+'K+') : (target===95 ? '95%' : target + '+'); }, 18); };
+      observer.observe(Object.assign(document.createElement('div'), {className:'hidden'}));
+      const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) run(); }), {threshold:.5});
+      io.observe(el);
+    });
+
+    const tabs = [...document.querySelectorAll('#tutorialTabs button')];
+    const cards = [...document.querySelectorAll('.tutorial-card')];
+    tabs.forEach(btn=>btn.addEventListener('click', ()=>{
+      tabs.forEach(b=>b.classList.remove('tab-active'));
+      btn.classList.add('tab-active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card=>{
+        const ok = filter==='all' || card.dataset.tags.includes(filter);
+        card.style.display = ok ? '' : 'none';
+      });
+    }));
+
+    const track = document.getElementById('testimonialTrack');
+    const slidesCount = 3;
+    let tIndex = 0;
+    const updateTestimonials = ()=> track.style.transform = `translateX(calc(-${tIndex} * (100% + 20px)))`;
+    document.getElementById('prevTestimonial').onclick = ()=>{ tIndex = (tIndex - 1 + slidesCount) % slidesCount; updateTestimonials(); };
+    document.getElementById('nextTestimonial').onclick = ()=>{ tIndex = (tIndex + 1) % slidesCount; updateTestimonials(); };
+    setInterval(()=>{ tIndex = (tIndex + 1) % slidesCount; updateTestimonials(); }, 6500);
+
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      note.textContent = 'Thanks — your message is on its way. We’ll reply soon.';
+      note.className = 'text-sm text-green-300 min-h-5';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
